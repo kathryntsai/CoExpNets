@@ -821,11 +821,12 @@ annotate = function(net,subnets=T,organism="hsapiens",ensembl=F){
 #signals. It is based on the gProfileR R package (see documentation for the
 #package). Main parameters are
 #net.file			: full path name for the net file
-#filter				: ontologies to test for enrichemtn (see gProfileR docs)
+#filter				: ontologies to test for enrichment (see gProfileR docs)
 #exclude.iea		: do not use Inferred electronic annotations (see gProfileR docs)
 #correction.method	: method for multiple testing correction (see gProfileR docs)
 #out.file			: full name for the csv file where to store results
 #incluster			: ignore that one
+#updated 9/2/20
 getGProfilerOnNet <- function(net.file,
                               filter=c("GO","KEGG","REAC"),
                               ensembl=TRUE,
@@ -854,7 +855,7 @@ getGProfilerOnNet <- function(net.file,
     all.genes[[module]] <- genes
   }
 
-  go <- gProfileR::gprofiler(all.genes,
+  go <- gProfiler2::gost(all.genes,
                              correction_method=correction.method,
                              #custom_bg=background,
                              src_filter=filter,
